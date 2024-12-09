@@ -1,0 +1,82 @@
+Child:- Id, Name, Disability, DOB, Found_Location, Gender, Admission Date, Room_Number, Education, Blood Group, leaving_Date, Adaption Id, Medical Id,
+Employ:- Id, Name, Address, Position, Joining Date, Phone Number, NID, Retirement, Previous-Job, Education_Qualification, 
+Adoption:- id, father_name, Mother_Name, Father NID, Mother_NID, Child_ID, Finalcial Condition, Contact_Number, No Of Childs, Address, Adoption Date, approved BY (Employ Id)
+Medical History:- Medical ID, Child-Id, Checkup Date, Checkup Location, Health Issue
+Financial Info:- Id, Company Name/ Person, Amount, Date, Purpose, Contact Info, Status, 
+Management:- userId, Name, Position, Child Id, Employ Id, Adoption ID, Medical Id, Financial ID
+
+
+Suggestions From CHATGPT:-
+
+### 1. **Child Table**
+   - `Child_Id` (PK): Unique identifier for each child.
+   - `Name`: Full name of the child.
+   - `Disability`: Type of disability (if any).
+   - `DOB`: Date of birth.
+   - `Found_Location`: Location where the child was found.
+   - `Gender`: Gender of the child.
+   - `Admission_Date`: Date of admission to the orphanage.
+   - `Room_Number`: Assigned room number in the orphanage.
+   - `Education_Level`: Current education level (e.g., primary, secondary).
+   - `Blood_Group`: Blood group of the child.
+   - `Leaving_Date`: Date the child left the orphanage, if applicable.
+   - `Adoption_Id` (FK): Links to `Adoption` table.
+   - `Medical_Id` (FK): Links to the `Medical History` table.
+
+### 2. **Employ Table**
+   - `Employ_Id` (PK): Unique identifier for each employee.
+   - `Name`: Employee’s name.
+   - `Address`: Employee’s address.
+   - `Position`: Job position of the employee.
+   - `Joining_Date`: Date the employee joined the orphanage.
+   - `Phone_Number`: Contact number of the employee.
+   - `NID`: National ID number of the employee.
+   - `Retirement_Date`: Retirement date, if retired.
+   - `Previous_Job`: Details of the previous job, if any.
+   - `Education_Qualification`: Highest qualification.
+   - `Status`: Current employment status (e.g., Active, Retired).
+
+### 3. **Adoption Table**
+   - `Adoption_Id` (PK): Unique identifier for each adoption record.
+   - `Father_Name`: Name of the adoptive father.
+   - `Mother_Name`: Name of the adoptive mother.
+   - `Father_NID`: National ID of the father.
+   - `Mother_NID`: National ID of the mother.
+   - `Child_Id` (FK): Links to `Child` table.
+   - `Financial_Condition`: Financial status of the adopting family.
+   - `Contact_Number`: Contact number of the adopting family.
+   - `No_Of_Children`: Number of children the family has.
+   - `Address`: Address of the adopting family.
+   - `Adoption_Date`: Date of adoption.
+   - `Approved_By` (FK): Links to `Employ_Id` in the `Employ` table.
+
+### 4. **Medical History Table**
+   - `Medical_Id` (PK): Unique identifier for each medical record.
+   - `Child_Id` (FK): Links to `Child` table.
+   - `Checkup_Date`: Date of the checkup.
+   - `Checkup_Location`: Location of the medical checkup.
+   - `Health_Issue`: Identified health issues during the checkup.
+   - `Medication`: Prescribed medications, if any.
+   - `Doctor_Name`: Name of the doctor or healthcare provider.
+
+### 5. **Financial Info Table**
+   - `Financial_Id` (PK): Unique identifier for each financial record.
+   - `Donor_Type`: Type of donor (e.g., Company, Individual).
+   - `Donor_Name`: Name of the company or individual.
+   - `Amount`: Amount donated or granted.
+   - `Date`: Date of the financial transaction.
+   - `Purpose`: Purpose of the donation (e.g., Education, Medical, Food).
+   - `Contact_Info`: Contact information of the donor.
+   - `Status`: Status of the donation (e.g., Received, Pledged).
+
+### 6. **Management Table**
+   - `Management_Id` (PK): Unique identifier for each management entry.
+   - `User_Id` (FK): Links to user accounts if applicable.
+   - `Name`: Manager’s name.
+   - `Position`: Position in the orphanage.
+   - `Child_Id` (FK): Links to `Child` table for child management.
+   - `Employ_Id` (FK): Links to `Employ` table for employee management.
+   - `Adoption_Id` (FK): Links to `Adoption` table for adoption cases.
+   - `Medical_Id` (FK): Links to `Medical History` table for medical records.
+   - `Financial_Id` (FK): Links to `Financial Info` table for financial management.
+   - `Role_Type`: Defines the type of management (e.g., Child Welfare, Financial, Medical).
