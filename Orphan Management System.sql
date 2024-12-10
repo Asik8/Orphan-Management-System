@@ -411,5 +411,62 @@ INSERT INTO Visitors (VisitorID, Name, ContactNumber, Purpose, DateOfVisit, Time
 INSERT INTO TrainingPrograms (TrainingID, ProgramName, TrainerName, Date, Participants, OrphanID) VALUES
 (1, 'Yoga Session', 'Coach Linda', '2023-09-01', 20, 1);
 
+-- 1. Insert salary for OrphanID 3  
+INSERT INTO SalaryManagement (SalaryID, RoleID, SalaryAmount, PaymentDate, OrphanID) VALUES (3, 3, 7500.00, '2023-10-25', 3);
 
+-- 2. Select all salary records  
+SELECT * FROM SalaryManagement;
 
+-- 3. Update salary for employees with RoleID 2  
+UPDATE SalaryManagement SET SalaryAmount = 6200.00 WHERE RoleID = 2;
+
+-- 4. Delete salary record with SalaryID 2  
+DELETE FROM SalaryManagement WHERE SalaryID = 2;
+
+-- 5. Sum of all salaries  
+SELECT SUM(SalaryAmount) AS TotalSalary FROM SalaryManagement;
+
+-- 6. Average salary amount  
+SELECT AVG(SalaryAmount) AS AvgSalary FROM SalaryManagement;
+
+-- 7. Select salaries greater than 5000  
+SELECT * FROM SalaryManagement WHERE SalaryAmount > 5000;
+
+-- 8. Select salaries paid in the last 30 days  
+SELECT * FROM SalaryManagement WHERE PaymentDate >= DATE_SUB(CURDATE(), INTERVAL 30 DAY);
+
+-- 9. Select salaries associated with OrphanID 1  
+SELECT * FROM SalaryManagement WHERE OrphanID = 1;
+
+-- 10. Sort salary records by PaymentDate in ascending order  
+SELECT * FROM SalaryManagement ORDER BY PaymentDate ASC;
+
+-- 11. Group salaries by RoleID and sum them  
+SELECT RoleID, SUM(SalaryAmount) AS TotalSalaries FROM SalaryManagement GROUP BY RoleID;
+
+-- 12. Count the total number of salary records  
+SELECT COUNT(*) AS TotalSalaries FROM SalaryManagement;
+
+-- 13. Select roles that do not have salaries associated with Orphans 1, 2, or 3  
+SELECT RoleID FROM SalaryManagement WHERE OrphanID NOT IN (1, 2, 3);
+
+-- 14. Update PaymentDate to '2023-11-05' for OrphanID 2  
+UPDATE SalaryManagement SET PaymentDate = '2023-11-05' WHERE OrphanID = 2;
+
+-- 15. Delete salary records before October 1st, 2023  
+DELETE FROM SalaryManagement WHERE PaymentDate < '2023-10-01';
+
+-- 16. Get highest salary associated with each OrphanID  
+SELECT OrphanID, MAX(SalaryAmount) AS HighestSalary FROM SalaryManagement GROUP BY OrphanID;
+
+-- 17. Insert salary record for OrphanID 4  
+INSERT INTO SalaryManagement (SalaryID, RoleID, SalaryAmount, PaymentDate, OrphanID) VALUES (4, 4, 5200, '2023-11-12', 4);
+
+-- 18. Select salaries for RoleID 1 made between Sept 1st and Oct 1st, 2023  
+SELECT * FROM SalaryManagement WHERE RoleID = 1 AND PaymentDate BETWEEN '2023-09-01' AND '2023-10-01';
+
+-- 19. Update OrphanID 4 to OrphanID 5  
+UPDATE SalaryManagement SET OrphanID = 5 WHERE OrphanID = 4;
+
+-- 20. Count distinct OrphanIDs in the SalaryManagement table  
+SELECT COUNT(DISTINCT OrphanID) AS UniqueOrphans FROM SalaryManagement;
